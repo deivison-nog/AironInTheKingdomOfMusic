@@ -1,5 +1,26 @@
 package com.info85.aironmusic.model
 
+/**
+ * Central data store and challenge factory for the game.
+ *
+ * [REGIONS] contains the six canonical Bardo regions that follow the story of
+ * *Airon no Reino da Música*, progressing from introductory natural notes all the
+ * way to the final boss Slikpot who tests every musical concept at once:
+ *
+ *  1. **Alson** — natural notes (C–B), single & sequence challenges
+ *  2. **Angara** — sharps and natural notes, tighter timer, single & sequence
+ *  3. **Raintein** — major scales
+ *  4. **Lord Senford** — harmonic-minor scales
+ *  5. **Theron** — triads / chords
+ *  6. **Slikpot** — all challenge types, hardest timer
+ *
+ * Each region cleared unlocks the next and awards a *Song Fragment*.  When all
+ * six fragments are collected [GameActivity] shows the *Melodia do Retorno* ending.
+ *
+ * [generateChallenge] picks a challenge type at random from the region's [Region.modes]
+ * list and produces a [Challenge] whose [Challenge.answer] the player must reproduce
+ * on the virtual piano keyboard.
+ */
 object GameData {
 
     val REGIONS = listOf(
