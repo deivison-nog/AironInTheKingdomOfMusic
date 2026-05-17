@@ -29,8 +29,11 @@ object GameData {
         Region(
             id = 0,
             name = "Floresta das Primeiras Melodias",
+            shortName = "Floresta",
             icon = "🌲",
             colorHex = "#1b4332",
+            mapX = 0.30f,
+            mapY = 0.31f,
             baseTimeMs = 7000,
             modes = listOf("single", "sequence"),
             notePool = listOf("C", "D", "E", "F", "G", "A", "B"),
@@ -56,8 +59,11 @@ object GameData {
         Region(
             id = 1,
             name = "Terras do Compasso Ardente",
+            shortName = "Vulcão",
             icon = "🌋",
             colorHex = "#6a040f",
+            mapX = 0.39f,
+            mapY = 0.53f,
             baseTimeMs = 5500,
             modes = listOf("single", "sequence"),
             notePool = listOf("C#", "D#", "F#", "G#", "A#", "C", "D", "E"),
@@ -82,8 +88,11 @@ object GameData {
         Region(
             id = 2,
             name = "Lago dos Ecos Profundos",
+            shortName = "Lago",
             icon = "🌊",
             colorHex = "#0077b6",
+            mapX = 0.24f,
+            mapY = 0.60f,
             baseTimeMs = 8000,
             modes = listOf("scale"),
             scales = listOf(
@@ -113,8 +122,11 @@ object GameData {
         Region(
             id = 3,
             name = "Castelo da Harmonia Velada",
+            shortName = "Castelo",
             icon = "🏰",
             colorHex = "#2d00f7",
+            mapX = 0.58f,
+            mapY = 0.26f,
             baseTimeMs = 8000,
             modes = listOf("scale"),
             scales = listOf(
@@ -144,8 +156,11 @@ object GameData {
         Region(
             id = 4,
             name = "Torre das Cordas Eternas",
+            shortName = "Torre",
             icon = "⚡",
             colorHex = "#cc8800",
+            mapX = 0.50f,
+            mapY = 0.74f,
             baseTimeMs = 7000,
             modes = listOf("chord"),
             chords = listOf(
@@ -178,8 +193,11 @@ object GameData {
         Region(
             id = 5,
             name = "Domínio do Fim e do Recomeço",
+            shortName = "Final",
             icon = "🌀",
             colorHex = "#240046",
+            mapX = 0.71f,
+            mapY = 0.54f,
             baseTimeMs = 5000,
             modes = listOf("single", "sequence", "scale", "chord"),
             notePool = listOf("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"),

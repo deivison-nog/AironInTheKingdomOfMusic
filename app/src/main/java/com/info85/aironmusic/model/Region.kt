@@ -3,8 +3,11 @@ package com.info85.aironmusic.model
 data class Region(
     val id: Int,
     val name: String,
+    val shortName: String,
     val icon: String,
     val colorHex: String,
+    val mapX: Float,
+    val mapY: Float,
     val baseTimeMs: Long,
     val modes: List<String>,
     val notePool: List<String> = emptyList(),

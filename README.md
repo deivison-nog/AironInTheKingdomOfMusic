@@ -45,7 +45,7 @@ app/src/main/
 ├── java/com/info85/aironmusic/
 │   ├── MainActivity.kt          ← Home screen
 │   ├── StoryIntroActivity.kt    ← Narrative intro (shown once on first play)
-│   ├── MapSelectActivity.kt     ← Region selection with sequential unlock
+│   ├── MapSelectActivity.kt     ← Top-down kingdom map with sequential unlock
 │   ├── GameActivity.kt          ← Game loop + bardo dialogs + fragment reveal
 │   ├── model/
 │   │   ├── ChallengeType.kt
@@ -57,13 +57,14 @@ app/src/main/
 │   │   ├── GameState.kt
 │   │   └── GameData.kt          ← 6 Bardo regions + challenge generator
 │   ├── ui/
-│   │   ├── PianoKeyboardView.kt ← Custom View (white+black keys, touch)
-│   │   └── GameViewModel.kt     ← Game engine (timer, HP, score, combo)
+│   │   ├── GameViewModel.kt     ← Game engine (timer, HP, score, combo)
+│   │   ├── KingdomMapView.kt    ← Custom top-down kingdom map with clickable regions
+│   │   └── PianoKeyboardView.kt ← Custom View (white+black keys, touch)
 │   └── util/
 │       ├── SoundManager.kt      ← AudioTrack sine-wave tone generator
 │       └── StoryPrefs.kt        ← SharedPreferences story-progress helper
 └── res/
-    ├── layout/   activity_main, activity_story_intro, activity_map_select, activity_game, item_region
+    ├── layout/   activity_main, activity_story_intro, activity_map_select, activity_game
     ├── values/   strings, colors, themes
     └── drawable/ rpg_dialog_bg, ic_launcher_foreground, …
 ```

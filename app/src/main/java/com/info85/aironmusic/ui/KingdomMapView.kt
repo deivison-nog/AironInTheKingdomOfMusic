@@ -19,6 +19,8 @@ class KingdomMapView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    private val density = resources.displayMetrics.density
+
     data class MapNode(
         val region: Region,
         val xFraction: Float,
@@ -97,17 +99,8 @@ class KingdomMapView @JvmOverloads constructor(
     }
 
     fun setRegions(regions: List<Region>, clearedCount: Int) {
-        val points = listOf(
-            0.30f to 0.31f,
-            0.39f to 0.53f,
-            0.24f to 0.60f,
-            0.58f to 0.26f,
-            0.50f to 0.74f,
-            0.71f to 0.54f
-        )
-        this.nodes = regions.mapIndexed { index, region ->
-            val point = points.getOrElse(index) { 0.5f to 0.5f }
-            MapNode(region, point.first, point.second)
+        this.nodes = regions.map { region ->
+            MapNode(region, region.mapX, region.mapY)
         }
         this.clearedCount = clearedCount
         invalidate()
@@ -155,8 +148,13 @@ class KingdomMapView @JvmOverloads constructor(
         val hitNode = findHitNode(event.x, event.y) ?: return true
         val isUnlocked = hitNode.region.id <= clearedCount
         selectedRegionId = hitNode.region.id
+        performClick()
         onRegionTap?.invoke(hitNode.region, isUnlocked)
         return true
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 
     private fun findHitNode(x: Float, y: Float): MapNode? {
@@ -301,7 +299,7 @@ class KingdomMapView @JvmOverloads constructor(
 
             labelPaint.color = Color.parseColor("#1f2b55")
             canvas.drawText(
-                "${node.region.id + 1}. ${shortLabel(node.region.name)}",
+                "${node.region.id + 1}. ${node.region.shortName}",
                 cx,
                 cy + radius * 1.55f,
                 labelPaint
@@ -478,18 +476,5 @@ class KingdomMapView @JvmOverloads constructor(
         }
         return region.contains(x.toInt(), y.toInt())
     }
-
-    private fun shortLabel(name: String): String {
-        return when {
-            name.contains("Floresta", ignoreCase = true) -> "Floresta"
-            name.contains("Terras", ignoreCase = true) -> "Vulcão"
-            name.contains("Lago", ignoreCase = true) -> "Lago"
-            name.contains("Castelo", ignoreCase = true) -> "Castelo"
-            name.contains("Torre", ignoreCase = true) -> "Torre"
-            name.contains("Domínio", ignoreCase = true) -> "Final"
-            else -> name.take(8)
-        }
-    }
-
-    private fun dp(value: Float): Float = value * resources.displayMetrics.density
+    private fun dp(value: Float): Float = value * density
 }
