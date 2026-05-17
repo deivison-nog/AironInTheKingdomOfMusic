@@ -271,7 +271,7 @@ FIM
                 setTextColor(Color.parseColor("#DDDDDD"))
                 typeface = android.graphics.Typeface.MONOSPACE
                 textSize = 13f
-                lineSpacingMultiplier = 1.4f
+                setLineSpacing(0f, 1.4f)
             }
         } catch (_: Exception) { }
     }
