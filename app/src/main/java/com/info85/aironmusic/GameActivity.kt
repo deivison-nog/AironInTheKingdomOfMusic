@@ -50,6 +50,8 @@ class GameActivity : AppCompatActivity() {
 
         binding.tvRegionName.text = "${region.icon} ${region.name}"
         binding.tvEnemyName.text  = "${region.enemyIcon} ${region.bardoName}"
+        binding.tvChallengePrompt.visibility = View.GONE
+        binding.tvChallengeProgress.visibility = View.GONE
 
         binding.pianoKeyboard.onNotePlayedListener = object : PianoKeyboardView.OnNotePlayedListener {
             override fun onNotePlayed(note: String) {
@@ -89,10 +91,6 @@ class GameActivity : AppCompatActivity() {
 
             val ch = s.challenge
             if (ch != null) {
-                binding.tvChallengePrompt.text = ch.prompt
-                binding.tvChallengeProgress.text =
-                    if (ch.total > 1) "${ch.progress} / ${ch.total}" else ""
-
                 // No blue key hint — the player reads the staff to find the note
                 binding.pianoKeyboard.activeNotes = emptySet()
                 binding.pianoKeyboard.correctNotes = ch.input.toSet()
