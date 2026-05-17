@@ -142,7 +142,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:padding="16dp">
 
         <TextView
@@ -164,6 +164,15 @@
             android:textColor="@color/accent_cyan"
             android:layout_marginTop="6dp" />
 
+        <!-- Musical staff: shows the note(s) to play without highlighting piano keys -->
+        <com.info85.aironmusic.ui.StaffView
+            android:id="@+id/staff_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:minHeight="80dp" />
+
         <TextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
@@ -171,7 +180,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/accent_gold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:visibility="invisible" />
 
         <TextView
@@ -180,7 +189,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/accent_purple"
-            android:layout_marginTop="6dp" />
+            android:layout_marginTop="4dp" />
 
     </LinearLayout>
 

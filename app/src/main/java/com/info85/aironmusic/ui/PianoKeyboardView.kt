@@ -26,7 +26,7 @@ class PianoKeyboardView @JvmOverloads constructor(
 
     var onNotePlayedListener: OnNotePlayedListener? = null
 
-    /** Notes to highlight as the currently expected input (blue). */
+    /** Notes to highlight as the currently expected input (blue). Not used for hints; retained for potential future use. */
     var activeNotes: Set<String> = emptySet()
         set(value) { field = value; invalidate() }
 

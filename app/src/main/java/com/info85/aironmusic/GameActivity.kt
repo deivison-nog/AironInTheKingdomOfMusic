@@ -93,12 +93,17 @@ class GameActivity : AppCompatActivity() {
                 binding.tvChallengeProgress.text =
                     if (ch.total > 1) "${ch.progress} / ${ch.total}" else ""
 
-                binding.pianoKeyboard.activeNotes = when (ch.type) {
-                    ChallengeType.CHORD -> (ch.answer.toSet() - ch.input.toSet())
-                    else -> if (ch.progress < ch.total) setOf(ch.answer[ch.progress]) else emptySet()
-                }
-
+                // No blue key hint — the player reads the staff to find the note
+                binding.pianoKeyboard.activeNotes = emptySet()
                 binding.pianoKeyboard.correctNotes = ch.input.toSet()
+
+                // Staff: chords show all tones stacked; others show the next expected note
+                binding.staffView.notes = when (ch.type) {
+                    ChallengeType.CHORD -> ch.answer
+                    else -> if (ch.progress < ch.total) listOf(ch.answer[ch.progress]) else emptyList()
+                }
+            } else {
+                binding.staffView.notes = emptyList()
             }
 
             when (s.phase) {
