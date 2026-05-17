@@ -146,7 +146,8 @@ class GameActivity : AppCompatActivity() {
             .setMessage("Airon foi derrotado…\n\nPontuação final: $score")
             .setPositiveButton("Tentar Novamente") { _, _ ->
                 dialogShown = false
-                recreate()
+                // Reset game state in the ViewModel without recreating the Activity
+                viewModel.startGame(regionIndex)
             }
             .setNegativeButton("Menu Principal") { _, _ ->
                 finish()
