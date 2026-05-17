@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.info85.aironmusic.databinding.ActivityMainBinding
+import com.info85.aironmusic.util.StoryPrefs
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnPlay.setOnClickListener {
-            startActivity(Intent(this, MapSelectActivity::class.java))
+            if (StoryPrefs.isIntroShown(this)) {
+                startActivity(Intent(this, MapSelectActivity::class.java))
+            } else {
+                startActivity(Intent(this, StoryIntroActivity::class.java))
+            }
         }
     }
 }

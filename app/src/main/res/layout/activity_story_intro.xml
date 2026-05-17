@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000"
+    android:padding="16dp">
+
+    <!-- ── Title block ──────────────────────────────────────────────────── -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🎵"
+        android:textSize="56sp"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AIRON\nNO REINO DA MÚSICA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- ── Story text box (RPG dialog style) ────────────────────────────── -->
+    <ScrollView
+        android:id="@+id/scroll_intro"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rpg_dialog_bg"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_intro_story"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:textColor="#DDDDDD"
+                android:lineSpacingMultiplier="1.5" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ── "Tap to begin" prompt ─────────────────────────────────────────── -->
+    <TextView
+        android:id="@+id/tv_intro_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="▼  TOQUE PARA COMEÇAR A AVENTURA"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:textColor="#FFFF00"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:padding="16dp" />
+
+</LinearLayout>

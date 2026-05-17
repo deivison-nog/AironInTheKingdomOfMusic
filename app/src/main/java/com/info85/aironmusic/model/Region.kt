@@ -13,5 +13,12 @@ data class Region(
     val description: String = "",
     val enemyName: String = "Guardião",
     val enemyIcon: String = "👾",
-    val requiredKills: Int = 5
+    val requiredKills: Int = 5,
+    // Story / Bardo fields
+    val bardoName: String = enemyName,
+    val bardoTitle: String = "",
+    val introLore: String = "",
+    val victoryLore: String = "",
+    val fragmentName: String = "Fragmento de Canção",
+    val fragmentLore: String = ""
 )

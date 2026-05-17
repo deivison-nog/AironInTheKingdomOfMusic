@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.info85.aironmusic.databinding.ActivityMapSelectBinding
 import com.info85.aironmusic.model.GameData
 import com.info85.aironmusic.model.Region
+import com.info85.aironmusic.util.StoryPrefs
 
 class MapSelectActivity : AppCompatActivity() {
 
@@ -27,12 +28,24 @@ class MapSelectActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.map_select_title)
 
+        val cleared = StoryPrefs.getRegionsCleared(this)
+
         binding.rvRegions.layoutManager = LinearLayoutManager(this)
-        binding.rvRegions.adapter = RegionAdapter(GameData.REGIONS) { region ->
+        binding.rvRegions.adapter = RegionAdapter(
+            regions = GameData.REGIONS,
+            clearedCount = cleared
+        ) { region ->
             val intent = Intent(this, GameActivity::class.java)
             intent.putExtra(GameActivity.EXTRA_REGION_INDEX, region.id)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Refresh list so newly cleared regions update their badge
+        val cleared = StoryPrefs.getRegionsCleared(this)
+        (binding.rvRegions.adapter as? RegionAdapter)?.updateCleared(cleared)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -45,6 +58,7 @@ class MapSelectActivity : AppCompatActivity() {
 
 class RegionAdapter(
     private val regions: List<Region>,
+    private var clearedCount: Int,
     private val onClick: (Region) -> Unit
 ) : RecyclerView.Adapter<RegionAdapter.VH>() {
 
@@ -54,6 +68,7 @@ class RegionAdapter(
         val tvDesc: TextView        = view.findViewById(R.id.tv_region_description)
         val tvEnemy: TextView       = view.findViewById(R.id.tv_region_enemy)
         val tvModes: TextView       = view.findViewById(R.id.tv_region_modes)
+        val tvFragment: TextView    = view.findViewById(R.id.tv_region_fragment)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -64,20 +79,49 @@ class RegionAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val r = regions[position]
+        val isCleared  = position < clearedCount
+        val isUnlocked = position <= clearedCount   // next available region is also unlocked
+
         holder.tvIcon.text  = r.icon
         holder.tvName.text  = r.name
-        holder.tvDesc.text  = r.description
-        holder.tvEnemy.text = "${r.enemyIcon} ${r.enemyName}  (${r.requiredKills} derrotas)"
-        holder.tvModes.text = "Modos: ${r.modes.joinToString(", ")}"
+        holder.tvEnemy.text = "${r.bardoName}  ·  ${r.bardoTitle}"
 
+        if (isUnlocked) {
+            holder.tvDesc.text     = r.description
+            holder.tvModes.text    = if (isCleared) "✅" else "▶"
+            holder.tvFragment.text = if (isCleared) "🎵 ${r.fragmentName} obtido" else ""
+            holder.itemView.alpha  = 1f
+            holder.itemView.setOnClickListener { onClick(r) }
+        } else {
+            holder.tvDesc.text     = "🔒  Derrote o Bardo anterior para desbloquear."
+            holder.tvModes.text    = "🔒"
+            holder.tvFragment.text = ""
+            holder.itemView.alpha  = 0.45f
+            holder.itemView.setOnClickListener(null)
+        }
+
+        // Tint card background with region colour
         try {
-            holder.itemView.setBackgroundColor(Color.parseColor(r.colorHex))
+            val base = Color.parseColor(r.colorHex)
+            // darken slightly so white text remains legible
+            val darkened = darken(base, if (isUnlocked) 0.55f else 0.30f)
+            holder.itemView.setBackgroundColor(darkened)
         } catch (_: Exception) {
             holder.itemView.setBackgroundColor(Color.DKGRAY)
         }
-
-        holder.itemView.setOnClickListener { onClick(r) }
     }
 
     override fun getItemCount() = regions.size
+
+    fun updateCleared(newCount: Int) {
+        clearedCount = newCount
+        notifyDataSetChanged()
+    }
+
+    private fun darken(color: Int, factor: Float): Int {
+        val r = (Color.red(color)   * factor).toInt().coerceIn(0, 255)
+        val g = (Color.green(color) * factor).toInt().coerceIn(0, 255)
+        val b = (Color.blue(color)  * factor).toInt().coerceIn(0, 255)
+        return Color.rgb(r, g, b)
+    }
 }

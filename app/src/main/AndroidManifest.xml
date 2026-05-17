@@ -20,6 +20,10 @@
         </activity>
 
         <activity
+            android:name=".StoryIntroActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".MapSelectActivity"
             android:screenOrientation="portrait" />
 

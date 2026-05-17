@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Airon na Música</string>
-    <string name="app_title">Airon\nno Reino da Música</string>
-    <string name="app_subtitle">Uma aventura musical épica</string>
-    <string name="btn_play">▶  Jogar</string>
-    <string name="map_select_title">Escolha sua Região</string>
-    <string name="map_select_hint">Toque em uma região para começar a batalha musical.</string>
+    <string name="app_name">Airon no Reino da Música</string>
+    <string name="app_title">AIRON\nNO REINO DA MÚSICA</string>
+    <string name="app_subtitle">Uma aventura musical épica em 8-bit</string>
+    <string name="btn_play">▶  JOGAR</string>
+    <string name="map_select_title">Reino da Música</string>
+    <string name="map_select_hint">Escolha uma região para enfrentar o Bardo guardião.</string>
 </resources>
