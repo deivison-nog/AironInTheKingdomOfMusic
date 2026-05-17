@@ -5,5 +5,10 @@
     <string name="app_subtitle">Uma aventura musical épica em 8-bit</string>
     <string name="btn_play">▶  JOGAR</string>
     <string name="map_select_title">Reino da Música</string>
-    <string name="map_select_hint">Escolha uma região para enfrentar o Bardo guardião.</string>
+    <string name="map_select_hint">Explore o reino visto de cima e toque em um cenário para escolher a próxima região.</string>
+    <string name="map_select_enter_region">Entrar na região</string>
+    <string name="map_select_locked">🔒 Derrote o Bardo anterior para liberar este cenário.</string>
+    <string name="map_select_unlocked">▶ Região liberada. Toque no botão para entrar na batalha.</string>
+    <string name="map_select_cleared">✅ Região conquistada. Você já obteve este Fragmento de Canção.</string>
+    <string name="map_select_map_content_description">Mapa superior do Reino da Música com cenários clicáveis</string>
 </resources>
