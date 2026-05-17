@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#0d0d1a</color>
+    <color name="bg_darker">#070711</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_secondary">#aaaacc</color>
+    <color name="accent_purple">#7b2ff7</color>
+    <color name="accent_gold">#ffba08</color>
+    <color name="accent_cyan">#4cc9f0</color>
+    <color name="hp_green">#4ade80</color>
+    <color name="hp_red">#f87171</color>
+</resources>
