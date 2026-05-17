@@ -9,4 +9,5 @@
     <color name="accent_cyan">#4cc9f0</color>
     <color name="hp_green">#4ade80</color>
     <color name="hp_red">#f87171</color>
+    <color name="ic_launcher_background">#0d0d1a</color>
 </resources>
